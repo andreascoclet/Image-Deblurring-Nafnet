@@ -1,0 +1,44 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+deblur_env/
+
+# Python packaging
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Data / archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# Dataset folders
+GoPro/
+__MACOSX/
+
+# Model checkpoints
+checkpoints/
+*.pth
+*.pt
+*.tar
+
+# Logs
+wandb/
+runs/
+logs/
+
+# OS metadata
+.DS_Store
+Thumbs.db
