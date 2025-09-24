@@ -52,9 +52,9 @@ Here is an example showing the deblurring results across different architectures
 
 From left to right:
 
-Blurry Input: Original degraded image from the GoPro dataset
-NAFNet: Final output from my simplified NAFNet architecture
-The Ground truth 
+Blurry Input: Original degraded image from the GoPro dataset <br>
+NAFNet: Final output from my simplified NAFNet architecture <br>
+The Ground truth <br>
 
 ## Environment Setup
 
