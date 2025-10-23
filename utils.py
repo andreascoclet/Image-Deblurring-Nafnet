@@ -30,6 +30,7 @@ def download_from_yadisk(short_url: str, filename: str, target_dir: str):
 def test_model(model, device, test_dataloader):
     PSNRs = []
     MSEs = []
+    SSIMs = []
     for inputs, targets in tqdm(test_dataloader):
         inputs = inputs.to(device)
         outputs = model(inputs).detach().cpu().numpy()
@@ -45,12 +46,18 @@ def test_model(model, device, test_dataloader):
         MSEs.append(l_2)
         psnr = 10 * np.mean(np.log10(l_2 +  1e-8))
         PSNRs.append(psnr)
+        # print(outputs.shape)
+        # print(targets.shape)
+        sim = ssim(outputs, targets, channel_axis=-1, data_range=1)
+        SSIMs.append(sim)
 
 
 
     print(f"Mean MSE: {np.mean(MSEs)}")
     print(f"Mean PSNR: {np.mean(PSNRs)}")
-    return np.mean(MSEs), np.mean(PSNRs)
+    print(f"Mean SSIM: {np.mean(SSIMs)}")
+
+    return np.mean(MSEs), np.mean(PSNRs), np.mean(SSIMs)
 
 
 def get_position_from_periods(iteration, cumulative_period):
@@ -64,7 +71,7 @@ class CosineAnnealingRestartLR(_LRScheduler):
                  optimizer,
                  periods,
                  restart_weights=(1, ),
-                 eta_min=0,
+                 eta_min=1e-6,
                  last_epoch=-1):
         self.periods = periods
         self.restart_weights = restart_weights
@@ -94,7 +101,7 @@ class CosineAnnealingRestartLR(_LRScheduler):
 def get_scheduler(optimizer):
     return CosineAnnealingRestartLR(optimizer, periods = [10] * 20,
                                     restart_weights = [1, 0.5, 0.5, 0.5, 0.5, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05],
-                                    eta_min=1e-7)
+                                    eta_min=5e-7)
     
 
 class LayerNormFunction(torch.autograd.Function):
@@ -132,4 +139,6 @@ class LayerNorm2d(nn.Module):
 
     def forward(self, x):
         return LayerNormFunction.apply(x, self.weight, self.bias, self.eps)
+
+
 

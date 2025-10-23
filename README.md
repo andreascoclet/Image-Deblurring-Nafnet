@@ -88,7 +88,7 @@ The notebook includes automated download functionality for:
 
 Execute the main notebook:
 ```
-deblurring_task_clean.ipynb
+debluring_Nafnet.ipynb
 ```
 
 The notebook contains complete training pipelines for all three architectures (baseline, UNet, NAFNet) with:
