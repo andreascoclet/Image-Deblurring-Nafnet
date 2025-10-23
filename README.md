@@ -48,7 +48,7 @@ Qualitative Comparison
 
 Here is an example showing the deblurring results across different architectures:
 
-![Result](results/nafnet.png)
+![Result](results/nafnet_predict.png)
 
 From left to right:
 
