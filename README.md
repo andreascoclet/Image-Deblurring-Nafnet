@@ -109,6 +109,7 @@ Primary optimization metric: **PSNR loss** (negative log form of MSE), where mor
 ├── README.md
 ├── requirements.txt
 ├── debluring_Nafnet.ipynb
+├── debluring_Nafnet_Evolution.ipynb
 ├── utils.py
 ├── GoPro/
 │   ├── train/
@@ -122,8 +123,9 @@ Primary optimization metric: **PSNR loss** (negative log form of MSE), where mor
 │   ├── unet.png
 │   ├── gate.png
 │   └── sca.png
+│   └── nafnet_block.png
 ├── results/
-│   ├── nafnet.png
+│   ├── nafnet_predict.png
 │   ├── simple_baseline.png
 │   └── unet.png
 
